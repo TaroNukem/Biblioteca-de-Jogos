@@ -9,12 +9,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="index">
+    <h1>Games Library</h1>
+</a>
 <a href="/">Home</a>
 <a href="biblioteca">Biblioteca</a>
-
     <h2 th:text="${jogo.nome}"></h2>
     <h4 th:text="${jogo.lancamento}"></h4>
     <h3 th:utext="${jogo.descricao}"></h3>
     <img class="imagemJogo" th:src="${jogo.imagem}" alt="Imagem do jogo">
+
+<form action="/biblioteca/adicionar" method="post">
+    <input type="hidden" name="nome" th:value="${jogo.nome}">
+    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
+    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
+    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
+    <button type="submit"> Adicionar à biblioteca</button>
+</form>
+<form action="/biblioteca/remover" method="post">
+    <input type="hidden" name="nome" th:value="${jogo.nome}">
+    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
+    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
+    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
+    <button type="submit"> Remover da biblioteca</button>
+</form>
 </body>
 </html>

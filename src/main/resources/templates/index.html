@@ -9,12 +9,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="biblioteca">
+<a href="index">
     <h1>Games Library</h1>
 </a>
 <form action="/jogo" method="get">
     <input type="text" id="nome" name="nome" placeholder=" Digite o nome do jogo">
     <button type="submit">Buscar</button>
 </form>
+<h2>Jogo Aleatório</h2>
+<div class="jogo-aleatorio">
+
+
+    <a th:href="@{/jogo(nome=${nomeAleatorio})}">
+        <img
+                class="imagemBiblioteca"
+                th:src="${imagemAleatorio}"
+                th:alt="${nomeAleatorio}"
+        >
+
+        <h3 th:text="${nomeAleatorio}"></h3>
+    </a>
+</div>
+
+<div class="jogos index-jogos">
+    <a th:each="jogo: ${biblioteca}" th:href="@{/jogo(nome=${jogo.nome})}">
+        <div class="jogo">
+            <img class="imagemBiblioteca" th:src="${jogo.imagem}" alt="Imagem do jogo">
+            <h3 th:text="${jogo.nome}"></h3>
+        </div>
+    </a>
+</div>
 </body>
 </html>

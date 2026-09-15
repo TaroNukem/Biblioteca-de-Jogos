@@ -9,13 +9,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="index">
+    <h1>Games Library</h1>
+</a>
 <a href="/">Home</a>
 <a href="biblioteca">Biblioteca</a>
-<div class="jogos">
-    <div class="jogo" th:each="jogo : ${biblioteca}">
+<div class="jogos biblioteca-jogos">
+    <a th:each="jogo: ${biblioteca}" th:href="@{/jogo(nome=${jogo.nome})}">
+    <div class="jogo">
         <img class="imagemBiblioteca" th:src="${jogo.imagem}" alt="Imagem do jogo">
         <h3 th:text="${jogo.nome}"></h3>
     </div>
+    </a>
+</div>
 </div>
 </body>
 </html>

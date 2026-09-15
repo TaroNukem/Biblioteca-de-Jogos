@@ -4,10 +4,7 @@ import com.biblioteca.GamesLibrary.service.Jogo;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 import com.google.gson.JsonObject;
 import org.springframework.ui.Model;
@@ -62,16 +59,65 @@ public class ControllerLibrary {
         novoJogo.setLancamento(lancamento);
         novoJogo.setImagem(imagem);
         novoJogo.setDescricao(descricao);
-        if (!biblioteca.contains(novoJogo)) {
-            biblioteca.add(novoJogo);
-        }
+
         model.addAttribute("jogo", novoJogo);
         return "jogo";
+    }
+
+    @GetMapping("/")
+    public String index(Model model) {
+        String resposta = client.get().uri("https://api.rawg.io/api/games?key=8fef92cf54344516aecd37be2e243194&page=1").retrieve().body(String.class);
+
+        JsonObject json = JsonParser.parseString(resposta).getAsJsonObject();
+        JsonArray resultados = json.get("results").getAsJsonArray();
+
+        int numeroAleatorio = (int) (Math.random() * resultados.size());
+
+        JsonObject jogoAleatorio = resultados.get(numeroAleatorio).getAsJsonObject();
+
+        String nomeAleatorio = jogoAleatorio.get("name").getAsString();
+        String imagemAleatorio = jogoAleatorio.get("background_image").getAsString();
+
+        model.addAttribute("nomeAleatorio", nomeAleatorio);
+        model.addAttribute("imagemAleatorio", imagemAleatorio);
+        model.addAttribute("biblioteca", biblioteca);
+        return "index";
     }
 
     @GetMapping("/biblioteca")
     public String biblioteca(Model model) {
         model.addAttribute("biblioteca", biblioteca);
         return "biblioteca";
+    }
+
+    @PostMapping("/biblioteca/adicionar")
+    public String adicionar(@RequestParam String nome, @RequestParam String imagem, @RequestParam String lancamento, @RequestParam String descricao) {
+        Jogo novoJogo = new Jogo();
+
+        novoJogo.setNome(nome);
+        novoJogo.setImagem(imagem);
+        novoJogo.setLancamento(lancamento);
+        novoJogo.setDescricao(descricao);
+
+        if(!biblioteca.contains(novoJogo)){
+            biblioteca.add(novoJogo);
+        }
+        return "redirect:/biblioteca";
+    }
+
+    @PostMapping("/biblioteca/remover")
+    public String remover(@RequestParam String nome, @RequestParam String imagem, @RequestParam String lancamento, @RequestParam String descricao) {
+        Jogo novoJogo = new Jogo();
+
+        novoJogo.setNome(nome);
+        novoJogo.setImagem(imagem);
+        novoJogo.setLancamento(lancamento);
+        novoJogo.setDescricao(descricao);
+
+        if(biblioteca.contains(novoJogo)){
+            biblioteca.remove(novoJogo);
+        }
+
+        return "redirect:/biblioteca";
     }
 }
