@@ -7,6 +7,18 @@ public class Jogo {
     private String nome;
     private String lancamento;
     private String imagem;
+    private String descricao;
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(!(o instanceof Jogo)){
+            return false;
+        }
+        Jogo jogo = (Jogo) o;
+        return nome.equals(jogo.nome);    }
 
     public String getLancamento() {
         return lancamento;
@@ -30,5 +42,13 @@ public class Jogo {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

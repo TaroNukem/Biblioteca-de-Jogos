@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    font-family: Monospace;
+}
+body{
+    background-color: #242424;
+    color: #fff;
+}
+
+#nome{
+    border: solid 1px blue;
+    width: 40%;
+    height: 24px;
+    border-radius: 50px;
+}
+
+.imagemJogo{
+    width: 100%;
+    height: 640px;
+    object-fit: cover;
+}
+
+.imagemBiblioteca{
+    width: 50%;
+    height: 240px;
+    object-fit: cover;
+}
+
+a{
+    text-decoration: none;
+    color: orangered;
+}
