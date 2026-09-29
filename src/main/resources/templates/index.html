@@ -1,43 +1,49 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Minha Biblioteca</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<a href="index">
+<a href="/">
     <h1>Games Library</h1>
 </a>
 <form action="/jogo" method="get">
-    <input type="text" id="nome" name="nome" placeholder=" Digite o nome do jogo">
+    <input
+            type="text"
+            id="nome"
+            name="nome"
+            placeholder="Digite o nome do jogo">
     <button type="submit">Buscar</button>
 </form>
-<h2>Jogo Aleatório</h2>
 <div class="jogo-aleatorio">
-
-
+    <h2>Sugestão para Jogar</h2>
     <a th:href="@{/jogo(nome=${nomeAleatorio})}">
         <img
                 class="imagemBiblioteca"
                 th:src="${imagemAleatorio}"
-                th:alt="${nomeAleatorio}"
-        >
-
-        <h3 th:text="${nomeAleatorio}"></h3>
+                th:alt="${nomeAleatorio}">
+        <h2 th:text="${nomeAleatorio}"></h2>
+        <h3 th:text="${notaAleatoria}"></h3>
     </a>
 </div>
-
+<p th:if="${jogos.isEmpty()}">
+    Nenhum jogo encontrado.
+</p>
 <div class="jogos index-jogos">
-    <a th:each="jogo: ${biblioteca}" th:href="@{/jogo(nome=${jogo.nome})}">
-        <div class="jogo">
-            <img class="imagemBiblioteca" th:src="${jogo.imagem}" alt="Imagem do jogo">
+    <div class="jogo" th:each="jogo : ${jogos}">
+        <a th:href="@{/jogo(nome=${jogo.nome})}">
+            <img
+                    class="imagemBiblioteca"
+                    th:src="${jogo.imagem}"
+                    th:alt="${jogo.nome}">
             <h3 th:text="${jogo.nome}"></h3>
-        </div>
-    </a>
+        </a>
+    </div>
 </div>
 </body>
 </html>

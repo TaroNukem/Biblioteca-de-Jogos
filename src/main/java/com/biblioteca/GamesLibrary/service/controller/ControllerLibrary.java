@@ -66,21 +66,39 @@ public class ControllerLibrary {
 
     @GetMapping("/")
     public String index(Model model) {
-        String resposta = client.get().uri("https://api.rawg.io/api/games?key=8fef92cf54344516aecd37be2e243194&page=1").retrieve().body(String.class);
+
+        String resposta = client.get()
+                .uri("https://api.rawg.io/api/games?key=8fef92cf54344516aecd37be2e243194&page=1")
+                .retrieve()
+                .body(String.class);
 
         JsonObject json = JsonParser.parseString(resposta).getAsJsonObject();
         JsonArray resultados = json.get("results").getAsJsonArray();
 
+        // Jogo recomendado
         int numeroAleatorio = (int) (Math.random() * resultados.size());
-
         JsonObject jogoAleatorio = resultados.get(numeroAleatorio).getAsJsonObject();
 
         String nomeAleatorio = jogoAleatorio.get("name").getAsString();
         String imagemAleatorio = jogoAleatorio.get("background_image").getAsString();
+        String notaAleatoria = jogoAleatorio.get("rating").getAsString() + "⭐";
 
         model.addAttribute("nomeAleatorio", nomeAleatorio);
         model.addAttribute("imagemAleatorio", imagemAleatorio);
+        model.addAttribute("notaAleatoria", notaAleatoria);
+
+        List<Jogo> jogos = new ArrayList<>();
+        for (int i = 0; i < resultados.size(); i++) {
+            JsonObject jogoJson = resultados.get(i).getAsJsonObject();
+            Jogo jogo = new Jogo();
+            jogo.setNome(jogoJson.get("name").getAsString());
+            jogo.setImagem(jogoJson.get("background_image").getAsString());
+            jogos.add(jogo);
+        }
+
+        model.addAttribute("jogos", jogos);
         model.addAttribute("biblioteca", biblioteca);
+
         return "index";
     }
 
