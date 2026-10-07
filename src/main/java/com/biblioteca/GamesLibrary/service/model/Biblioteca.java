@@ -1,6 +1,4 @@
-package com.biblioteca.GamesLibrary.service.controller;
-
-import com.biblioteca.GamesLibrary.service.Jogo;
+package com.biblioteca.GamesLibrary.service.model;
 
 import java.util.ArrayList;
 

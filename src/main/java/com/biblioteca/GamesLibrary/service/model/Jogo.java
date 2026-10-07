@@ -1,4 +1,4 @@
-package com.biblioteca.GamesLibrary.service;
+package com.biblioteca.GamesLibrary.service.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

@@ -1,6 +1,6 @@
 package com.biblioteca.GamesLibrary.service.controller;
 
-import com.biblioteca.GamesLibrary.service.Jogo;
+import com.biblioteca.GamesLibrary.service.model.Jogo;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import org.springframework.stereotype.Controller;
