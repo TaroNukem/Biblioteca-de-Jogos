@@ -6,14 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Biblioteca</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/biblioteca.css}">
 </head>
 <body>
-<a href="/">
-    <h1>Games Library</h1>
-</a>
-<a href="/">Home</a>
-<a href="biblioteca">Biblioteca</a>
+<nav class="navbar">
+    <a href="/" class="logo">Games Library</a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/biblioteca">Biblioteca</a>
+    </div>
+</nav>
 <div class="jogos biblioteca-jogos">
     <a th:each="jogo: ${biblioteca}" th:href="@{/jogo(nome=${jogo.nome})}">
     <div class="jogo">

@@ -7,11 +7,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Minha Biblioteca</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/index.css}">
 </head>
 <body>
-<a href="/">
-    <h1>Games Library</h1>
-</a>
+<nav class="navbar">
+    <a href="/" class="logo">Games Library</a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/biblioteca">Biblioteca</a>
+    </div>
+</nav>
 <form action="/jogo" method="get">
     <input
             type="text"
@@ -34,6 +40,7 @@
 <p th:if="${jogos.isEmpty()}">
     Nenhum jogo encontrado.
 </p>
+<h1>Jogos que você pode gostar</h1>
 <div class="jogos index-jogos">
     <div class="jogo" th:each="jogo : ${jogos}">
         <a th:href="@{/jogo(nome=${jogo.nome})}">

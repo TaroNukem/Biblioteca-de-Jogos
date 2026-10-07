@@ -6,32 +6,75 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title th:text="${jogo.nome}"></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/jogo.css}">
 </head>
 <body>
-<a href="/">
-    <h1>Games Library</h1>
-</a>
-<a href="/">Home</a>
-<a href="biblioteca">Biblioteca</a>
-    <h2 th:text="${jogo.nome}"></h2>
-    <h4 th:text="${jogo.lancamento}"></h4>
-    <h3 th:utext="${jogo.descricao}"></h3>
-    <img class="imagemJogo" th:src="${jogo.imagem}" alt="Imagem do jogo">
+<body>
+<nav class="navbar">
+    <a href="/" class="logo">Games Library</a>
 
-<form action="/biblioteca/adicionar" method="post">
-    <input type="hidden" name="nome" th:value="${jogo.nome}">
-    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
-    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
-    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
-    <button type="submit"> Adicionar à biblioteca</button>
-</form>
-<form action="/biblioteca/remover" method="post">
-    <input type="hidden" name="nome" th:value="${jogo.nome}">
-    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
-    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
-    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
-    <button type="submit"> Remover da biblioteca</button>
-</form>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/biblioteca">Biblioteca</a>
+    </div>
+</nav>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/biblioteca">Biblioteca</a>
+</nav>
+
+<main class="jogo-container">
+
+    <section class="jogo-info">
+
+        <div class="jogo-imagem">
+            <img
+                    class="imagemJogo"
+                    th:src="${jogo.imagem}"
+                    alt="Imagem do jogo">
+        </div>
+
+        <div class="jogo-detalhes">
+
+            <h2 th:text="${jogo.nome}"></h2>
+
+            <h4 th:text="${jogo.lancamento}"></h4>
+
+            <h3 th:utext="${jogo.descricao}"></h3>
+
+            <div class="botoes">
+
+                <form action="/biblioteca/adicionar" method="post">
+                    <input type="hidden" name="nome" th:value="${jogo.nome}">
+                    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
+                    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
+                    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
+
+                    <button type="submit">
+                        Adicionar à biblioteca
+                    </button>
+                </form>
+
+                <form action="/biblioteca/remover" method="post">
+                    <input type="hidden" name="nome" th:value="${jogo.nome}">
+                    <input type="hidden" name="imagem" th:value="${jogo.imagem}">
+                    <input type="hidden" name="lancamento" th:value="${jogo.lancamento}">
+                    <input type="hidden" name="descricao" th:value="${jogo.descricao}">
+
+                    <button type="submit">
+                        Remover da biblioteca
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
 </body>
 </html>

@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body {
+    background-color: #080808;
+    color: white;
+}
+
+a {
+    color: #ff6a00;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff8533;
+}
+
+body > a {
+    display: block;
+    margin: 20px 40px 15px;
+}
+
+body > a h1 {
+    font-size: 32px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+    margin: 0 40px 40px;
+}
+
+.jogo-container {
+    width: 100%;
+    background-color: #111;
+    border-top: 3px solid #ff6a00;
+    padding: 30px 40px;
+}
+
+.jogo-info {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+}
+
+.jogo-imagem {
+    width: 55%;
+}
+
+.imagemJogo {
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+    border-radius: 5px;
+    display: block;
+}
+
+.jogo-detalhes {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.jogo-detalhes h2 {
+    color: #ff6a00;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.jogo-detalhes h4 {
+    color: #888;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.jogo-detalhes h3 {
+    color: #ddd;
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: normal;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.botoes form {
+    margin: 0;
+}
+
+button {
+    padding: 13px 18px;
+    border: 1px solid #ff6a00;
+    border-radius: 4px;
+    background-color: #191919;
+    color: #ff6a00;
+    font-family: monospace;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff6a00;
+    color: #000;
+}
+
+@media (max-width: 900px) {
+    .jogo-container {
+        padding: 25px;
+    }
+
+    .jogo-info {
+        flex-direction: column;
+    }
+
+    .jogo-imagem,
+    .jogo-detalhes {
+        width: 100%;
+    }
+
+    .imagemJogo {
+        height: 400px;
+    }
+
+    .botoes {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    body > a {
+        margin-left: 15px;
+    }
+
+    nav {
+        margin-left: 15px;
+    }
+
+    .jogo-container {
+        padding: 15px;
+    }
+
+    .imagemJogo {
+        height: 280px;
+    }
+
+    .jogo-detalhes h2 {
+        font-size: 24px;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}
